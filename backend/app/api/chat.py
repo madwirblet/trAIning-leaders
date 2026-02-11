@@ -14,7 +14,7 @@ class ChatRequest(BaseModel):
 # Chat Response Schema
 class ChatResponse(BaseModel):
     answer: str
-    sources = List[str] = []
+    sources : List[str] = []
 
 @router.post("/")
 async def chat_endpoint(request: ChatRequest):

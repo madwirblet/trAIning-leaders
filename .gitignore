@@ -1,1 +1,7 @@
+# Backend venv
 backend/venv/
+
+# Pycache folders + compiled python
+__pycache__/
+*.py[codz]
+*$py.class
