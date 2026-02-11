@@ -23,7 +23,38 @@ py ./bundle.py
 This will create a new version of `thinkific_footer.html` to be pasted into the footer.
 
 
-**In the `/backend/app`**
+**In the `/backend`**
+
+### When working on the project on your local computer
+
+#### 1. Install necessary dependencies
+
+Create / Activate a virtual environment (venv)
+```bash
+# macOS/Linux
+python -m venv venv
+source venv/bin/activate
+
+# Windows
+python -m venv venv
+venv\Scripts\activate
+```
+
+Upgrade pip, setuptools, wheel
+```bash
+pip install --upgrade pip setuptools wheel
+```
+
+Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+When installing new dependencies
+```bash
+pip install [package]
+pip freeze > requirements.txt
+```
 
 (Updated when we figure out LLM and API info)
 
