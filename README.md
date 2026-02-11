@@ -56,6 +56,16 @@ pip install [package]
 pip freeze > requirements.txt
 ```
 
+#### 2. To locally run backend FastAPI Server
+Start the FastAPI server (--reload to update when changes are made)
+```bash
+uvicorn app.main:app --reload
+```
+
+To test API endpoints
+Go [HERE](http://127.0.0.1:8000/)
+
+
 (Updated when we figure out LLM and API info)
 
 ## Important Information
