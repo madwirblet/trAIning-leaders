@@ -1,0 +1,1 @@
+## Script to ingest course documents and repopulate vector database
