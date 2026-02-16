@@ -4,6 +4,7 @@
 import os
 from typing import List, Dict
 from pypdf import PdfReader
+from app.core.config import settings
 
 # ------------------
 # 1. Load .txt files
@@ -34,7 +35,7 @@ def load_pdf_file(path: str):
 # 3. Chunk a file's text
 # ----------------------
 
-def chunk_text(text: str, chunk_size: int = 512, overlap: int = 50):
+def chunk_text(text: str, chunk_size: int = settings.CHUNK_SIZE, overlap: int = settings.CHUNK_OVERLAP):
     chunks = []
     start = 0
 

@@ -2,8 +2,8 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     # Vector DB (chroma)
-    CHROMA_DIR: str = None
-    COLLECTION_NAME: str = None
+    CHROMA_DIR: str = "data/chroma_db"
+    COLLECTION_NAME: str = "course_docs"
 
     # Ingestion Settings
     DOCS_DIR: str = None
