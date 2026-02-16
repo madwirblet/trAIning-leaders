@@ -1,4 +1,4 @@
-# Backend venv
+# Backend venv + local chromadb
 backend/venv/
 backend/data/
 
