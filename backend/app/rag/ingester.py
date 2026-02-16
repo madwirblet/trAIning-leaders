@@ -50,7 +50,6 @@ def chunk_text(text: str, chunk_size: int = 512, overlap: int = 50):
 # ---------------------------------
 
 def build_chunks(folder: str):
-    print(os.getcwd())
     all_chunks = []
 
     for filename in os.listdir(folder):
