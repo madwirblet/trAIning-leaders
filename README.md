@@ -63,7 +63,7 @@ uvicorn app.main:app --reload
 ```
 
 To test API endpoints
-Go [HERE](http://127.0.0.1:8000/)
+Go [HERE](http://127.0.0.1:8000/docs)
 
 
 (Updated when we figure out LLM and API info)

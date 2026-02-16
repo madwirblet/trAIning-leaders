@@ -1,5 +1,6 @@
 # Backend venv
 backend/venv/
+backend/data/
 
 # Pycache folders + compiled python
 __pycache__/
