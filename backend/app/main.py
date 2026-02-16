@@ -10,4 +10,4 @@ app.include_router(chat.router, prefix = "/chat")
 # Root endpoint
 @app.get("/")
 async def root():
-    return {"message": "RAG CHatbot Backend is running."}
+    return {"message": "RAG Chatbot Backend is running."}
