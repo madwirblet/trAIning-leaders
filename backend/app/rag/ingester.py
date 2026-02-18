@@ -10,7 +10,7 @@ from app.core.config import settings
 # 1. Load .txt files
 # ------------------
 
-def load_txt_file(path: str):
+def load_txt_file(path: str) -> str:
     with open(path, "r", encoding="utf-8") as f:
         return f.read()
 
@@ -18,7 +18,7 @@ def load_txt_file(path: str):
 # 2. Load .pdf files
 # ------------------
 
-def load_pdf_file(path: str):
+def load_pdf_file(path: str) -> str:
     reader = PdfReader(path)
 
     full_text = ""
@@ -35,7 +35,15 @@ def load_pdf_file(path: str):
 # 3. Chunk a file's text
 # ----------------------
 
-def chunk_text(text: str, chunk_size: int = settings.CHUNK_SIZE, overlap: int = settings.CHUNK_OVERLAP):
+def chunk_text(text: str, chunk_size: int = settings.CHUNK_SIZE, overlap: int = settings.CHUNK_OVERLAP) -> List[str]:
+    """
+    Split raw text into overlapping chunks for embedding and retrieval.
+
+    Args:
+        text : Full input document text to be chunked
+        chunk_size : max number of characters in a chunk
+        overlap : number of characters shared between consecutive chunks
+    """
     chunks = []
     start = 0
 
@@ -50,7 +58,19 @@ def chunk_text(text: str, chunk_size: int = settings.CHUNK_SIZE, overlap: int = 
 # 4. Chunk all files in a directory
 # ---------------------------------
 
-def build_chunks(folder: str):
+def build_chunks(folder: str = settings.DOCS_DIR) -> List[Dict[str, str]]:
+    """
+    Load all supported files from a folder and convert them into chunked segments for ingestion to vector DB
+
+    Returned chunks have the form:
+    {
+        "chunk" : "<text content>",
+        "source" : "<filename>#<chunk<i>"
+    }
+
+    Args:
+        folder : path to the directory containing course docs
+    """
     all_chunks = []
 
     for filename in os.listdir(folder):
