@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     COLLECTION_NAME: str = "course_docs"
 
     # Ingestion Settings
-    DOCS_DIR: str = None
+    DOCS_DIR: str = "docs"
     CHUNK_SIZE: int = 512
     CHUNK_OVERLAP: int = 50
 
