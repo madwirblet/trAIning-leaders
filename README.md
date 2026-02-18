@@ -29,6 +29,15 @@ This will create a new version of `thinkific_footer.html` to be pasted into the 
 
 ## Important Information
 
+### Updating the footer
+
+1. Navigate to https://leadershipuniversity.thinkific.com/manage
+2. Click on "Copy of Leadership Gainesville"
+3. Click "Settings" and scroll to "Page footer code"
+4. Paste code that has already been bundled
+5. See you changes in the preview
+
 ## Major Change Log
 
 - February 11th, 2026 --> project structure/ skeleton pushed to Main
+
