@@ -20,22 +20,22 @@ It provides a FastAPI server supporting:
 
 ## Directory Structure
 
-backend/
-├── app/
-│ ├── api/
-│ ├── core/
-│ ├── models/
-│ ├── rag/
-│ │
-│ └── main.py
-│
-├── docs/
-├── data/chroma_db/
-├── scripts/
-│
-├── requirements.txt
-├── .env # Local environment variables (not committed)
-└── README.md
+backend/  
+├── app/  
+│ ├── api/  
+│ ├── core/  
+│ ├── models/  
+│ ├── rag/  
+│ │  
+│ └── main.py  
+│  
+├── docs/  
+├── data/chroma_db/  
+├── scripts/  
+│  
+├── requirements.txt  
+├── .env # Local environment variables (not committed)  
+└── README.md  
 
 ## Setup Instructions
 
