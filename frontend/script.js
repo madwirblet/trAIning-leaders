@@ -98,6 +98,10 @@
                 // Remove loading indicator
                 removeLoading(loadingId, chatMessages);
 
+                // Add delay to simulate thinking
+                const typingDelay = Math.min(2000, aiResponse.length * 20); 
+                setTimeout(() => { appendMessage('AI', aiResponse, chatMessages); }, typingDelay);
+
                 if (!response.ok) {
                     throw new Error(`API error: ${response.status}`);
                 }
@@ -151,7 +155,9 @@
             const loadingId = 'loading-' + Date.now();
             loadingDiv.id = loadingId;
             loadingDiv.className = 'chat-message chat-message-ai';
-            loadingDiv.innerHTML = '<div class="chat-loading">AI is thinking</div>';
+            loadingDiv.innerHTML = `<div class="typing-indicator">
+                <span></span><span></span><span></span>
+            </div>`;
             container.appendChild(loadingDiv);
             container.scrollTop = container.scrollHeight;
             return loadingId;
