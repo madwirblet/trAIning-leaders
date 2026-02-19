@@ -1,9 +1,10 @@
-## RAG Pipeline driver
-#### Accept query, embed, similarity search, augment query, generate response
+from app.rag.retriever import retrieve
+from app.rag.augmenter import augment_prompt_with_context
+from app.rag.generator import generate_answer
 
-from typing import List, Dict
+from typing import Dict
 
-def answer_query(message: str) -> Dict[str, object]:
+def rag_service(query: str) -> Dict[str, object]:
     """
     Answer a user query using the RAG pipeline.
 
@@ -21,8 +22,15 @@ def answer_query(message: str) -> Dict[str, object]:
     }
     """
 
+    chunks, sources = retrieve(query)
+
+    prompt = augment_prompt_with_context(query, chunks)
+
+    answer = generate_answer(prompt)
+
+
     return {
-        "answer": f"LLM offline, see context below\nQuery: {message}",
-        "context": ["TODO"],
-        "sources": ["TODO"]
+        "answer": answer,
+        "context": chunks,
+        "sources": sources
     }

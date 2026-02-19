@@ -2,6 +2,7 @@
 #### Accept query vector, find top k similar chunks, return them
 
 from app.core.config import settings
+from app.rag.embedder import embed_text
 from app.rag.vector_store import get_collection
 
 from typing import List, Dict
@@ -20,15 +21,16 @@ def retrieve(query: str, k: int = settings.TOP_K) -> List[Dict[str,str]]:
     }
     """
 
-
     collection = get_collection()
-
-
-    # TODO: figure out embeddings
+    qVec = embed_text(query)
 
     results = collection.query(
-        query_embeddings=None,
-        n_results=k
+        query_embeddings = qVec,
+        n_results = k,
+        include = ["documents", "metadatas"]
     )
 
-    return results["documents"][0]
+    docs = results["documents"][0]
+    sources = [m["source"] for m in results["metadatas"][0]]
+
+    return docs, sources
