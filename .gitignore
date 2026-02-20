@@ -4,6 +4,7 @@ backend/data/
 backend/.env
 backend/.env.*
 
+
 # Pycache folders + compiled python
 __pycache__/
 *.py[codz]
