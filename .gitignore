@@ -1,6 +1,8 @@
 # Backend venv + local chromadb
 backend/venv/
 backend/data/
+backend/.env
+backend/.env.*
 
 # Pycache folders + compiled python
 __pycache__/

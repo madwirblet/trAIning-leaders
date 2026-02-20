@@ -1,6 +1,9 @@
 import chromadb
 from app.core.config import settings
 
-def get_collection():
-    client = chromadb.PersistentClient(path = settings.CHROMA_DIR)
-    return client.get_or_create_collection(settings.COLLECTION_NAME)
+client = chromadb.PersistentClient(path = settings.CHROMA_DIR)
+
+def get_collection() -> chromadb.Collection:
+    return client.get_or_create_collection(
+        name = settings.COLLECTION_NAME
+    )
