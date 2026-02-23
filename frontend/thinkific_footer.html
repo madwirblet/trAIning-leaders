@@ -254,16 +254,42 @@
     pointer-events: none !important;
 }
 
-/* Loading indicator */
-.chat-loading {
-    display: inline-block;
-    margin-bottom: 12px;
+/* Typing annimation */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  width: fit-content;
 }
 
-.chat-loading::after {
-    content: '...';
-    animation: dots 1.5s steps(4, end) infinite;
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  background: #4b5563;
+  border-radius: 50%;
+  display: inline-block;
+  animation: typingBlink 1.4s infinite both;
 }
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingBlink {
+  0% { opacity: 0.3; transform: translateY(0); }
+  20% { opacity: 1; transform: translateY(-3px); }
+  100% { opacity: 0.3; transform: translateY(0); }
+}
+
 
 @keyframes dots {
     0%, 20% { content: '.'; }
@@ -413,6 +439,10 @@
                 // Remove loading indicator
                 removeLoading(loadingId, chatMessages);
 
+                // Add delay to simulate thinking
+                const typingDelay = Math.min(2000, aiResponse.length * 20); 
+                setTimeout(() => { appendMessage('AI', aiResponse, chatMessages); }, typingDelay);
+
                 if (!response.ok) {
                     throw new Error(`API error: ${response.status}`);
                 }
@@ -466,7 +496,9 @@
             const loadingId = 'loading-' + Date.now();
             loadingDiv.id = loadingId;
             loadingDiv.className = 'chat-message chat-message-ai';
-            loadingDiv.innerHTML = '<div class="chat-loading">AI is thinking</div>';
+            loadingDiv.innerHTML = `<div class="typing-indicator">
+                <span></span><span></span><span></span>
+            </div>`;
             container.appendChild(loadingDiv);
             container.scrollTop = container.scrollHeight;
             return loadingId;
