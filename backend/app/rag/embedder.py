@@ -1,4 +1,4 @@
-from openai import OpenAI
+from openai import OpenAI, AuthenticationError
 from typing import List
 import logging
 from app.core.config import settings
@@ -20,11 +20,10 @@ def embed_text(text: str) -> List[float]:
 
         return res.data[0].embedding
     
+    except AuthenticationError as e:
+        logger.error("OpenAI authentication failed")
+        raise OpenAIAuthError("Invalid OpenAI API key") from e
+
     except Exception as e:
-
-        if "401" in str(e):
-            logger.error("OpenAI authentication failed")
-            raise OpenAIAuthError("Invalid OpenAI API key") from e
-
         logger.error("Embedding generation failed: %s", e)
         raise EmbeddingError("Embedding generation failed") from e

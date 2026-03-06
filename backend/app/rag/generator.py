@@ -3,7 +3,7 @@
 
 from app.core.config import settings
 from app.core.exceptions import OpenAIAuthError, GenerationError
-from openai import OpenAI
+from openai import OpenAI, AuthenticationError
 import logging
 
 client = OpenAI(api_key = settings.OPENAI_API_KEY)
@@ -27,10 +27,10 @@ def generate_answer(prompt: str) -> str:
 
         return answer
     
+    except AuthenticationError as e:
+        logger.error("OpenAI authentication failed")
+        raise OpenAIAuthError("Invalid OpenAI API key") from e
+    
     except Exception as e:
-        if "401" in str(e):
-            logger.error("OpenAI authentication failed")
-            raise OpenAIAuthError("Invalid OpenAI API key") from e
-
         logger.error("LLM generation failed: %s", e)
         raise GenerationError("LLM generation failed") from e

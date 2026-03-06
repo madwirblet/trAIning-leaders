@@ -2,7 +2,7 @@
 #### Accept query vector, find top k similar chunks, return them
 
 from app.core.config import settings
-from app.core.exceptions import RetrievalError
+from app.core.exceptions import RetrievalError, OpenAIAuthError
 from app.rag.embedder import embed_text
 from app.rag.vector_store import get_collection
 
@@ -44,6 +44,9 @@ def retrieve(query: str, k: int = settings.TOP_K) -> List[Dict[str,str]]:
 
         return docs, sources
     
+    except OpenAIAuthError:
+        raise
+
     except Exception as e:
         logger.exception("Retrieval failed: %s", e)
         raise RetrievalError("Failed to retrieve content") from e

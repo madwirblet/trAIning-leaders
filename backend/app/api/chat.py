@@ -13,16 +13,10 @@ router = APIRouter()
 
 @router.post("/")
 async def chat_endpoint(request: ChatRequest):
-    try:
-        logger.info("Chat request received")
+    logger.info("Chat request received")
 
-        result = rag_service(request.message)
+    result = rag_service(request.message)
 
-        logger.info("Chat request complete")
+    logger.info("Chat request complete")
 
-        return ChatResponse(**result)
-    
-    except Exception as e:
-        logger.exception("Chat endpoint failed")
-
-        raise HTTPException(status_code = 500, detail = str(e))
+    return ChatResponse(**result)
