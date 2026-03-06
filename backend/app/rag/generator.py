@@ -3,19 +3,29 @@
 
 from app.core.config import settings
 from openai import OpenAI
+import logging
 
 client = OpenAI(api_key = settings.OPENAI_API_KEY)
+logger = logging.getLogger(__name__)
 
 def generate_answer(prompt: str) -> str:
     """
     Generate LLM response to an engineered prompt. Returns answer.
     """
+    try:
+        logger.info("Generating response from LLM")
 
-    res = client.chat.completions.create(
-        model = settings.LLM_MODEL,
-        messages = [{"role" : "user", "content" : prompt}]
-    )
+        res = client.chat.completions.create(
+            model = settings.LLM_MODEL,
+            messages = [{"role" : "user", "content" : prompt}]
+        )
 
-    answer = res.choices[0].message.content
+        answer = res.choices[0].message.content
 
-    return answer
+        logger.info("Generated response successfully")
+
+        return answer
+    
+    except Exception:
+        logger.exception("LLM generation failed")
+        raise
