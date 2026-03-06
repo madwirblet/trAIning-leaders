@@ -42,6 +42,6 @@ def rag_service(query: str) -> Dict[str, object]:
             "sources": sources
         }
     
-    except Exception:
-        logger.exception("RAG Pipeline Failed")
+    except Exception as e:
+        logger.exception("RAG pipeline failed for query '%s': %s", query, e)
         raise

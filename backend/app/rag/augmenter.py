@@ -1,5 +1,6 @@
 from typing import List
 import logging
+from app.core.exceptions import RAGException
 
 logger = logging.getLogger(__name__)
 
@@ -27,8 +28,8 @@ def augment_prompt_with_context(query: str, context: List[str]) -> str:
         
         return sPrompt
     
-    except Exception:
-        logger.exception("Augmenter failed")
-        raise
+    except Exception as e:
+        logger.exception("Augmentation failed: %s", e)
+        raise RAGException("Augmentation failed") from e
 
 

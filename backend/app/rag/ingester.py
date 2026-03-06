@@ -6,6 +6,7 @@ from typing import List, Dict
 from pypdf import PdfReader
 import logging
 from app.core.config import settings
+from app.core.exceptions import DocumentProcessingError
 
 logger = logging.getLogger(__name__)
 
@@ -24,9 +25,9 @@ def load_txt_file(path: str) -> str:
         
         return text
     
-    except Exception:
-        logger.exception(f"Failed to load TXT file: {path}")
-        raise
+    except Exception as e:
+        logger.error("Failed to load TXT file %s: %s", path, e)
+        raise DocumentProcessingError("Failed to load TXT document") from e
 
 # ------------------
 # 2. Load .pdf files
@@ -48,9 +49,9 @@ def load_pdf_file(path: str) -> str:
 
         return full_text
     
-    except Exception:
-        logger.info(f"Failed to load PDF file: {path}")
-        raise
+    except Exception as e:
+        logger.error("Failed to load PDF file %s: %s", path, e)
+        raise DocumentProcessingError("Failed to load PDF document") from e
 
 
 # ----------------------
@@ -81,9 +82,9 @@ def chunk_text(text: str, chunk_size: int = settings.CHUNK_SIZE, overlap: int = 
 
         return chunks
     
-    except Exception:
-        logger.exception("Chunking failed")
-        raise
+    except Exception as e:
+        logger.error("Chunking failed: %s", e)
+        raise DocumentProcessingError("Text chunking failed") from e
 
 # ---------------------------------
 # 4. Chunk all files in a directory
@@ -139,6 +140,6 @@ def build_chunks(folder: str = settings.DOCS_DIR) -> List[Dict[str, str]]:
 
         return all_chunks
 
-    except Exception:
-        logger.exception("Chunk building failed")
-        raise
+    except Exception as e:
+        logger.error("Chunk building failed: %s", e)
+        raise DocumentProcessingError("Failed to build chunks") from e

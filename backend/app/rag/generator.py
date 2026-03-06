@@ -2,6 +2,7 @@
 #### Accept query, embed, similarity search, augment query, generate response
 
 from app.core.config import settings
+from app.core.exceptions import OpenAIAuthError, GenerationError
 from openai import OpenAI
 import logging
 
@@ -26,6 +27,10 @@ def generate_answer(prompt: str) -> str:
 
         return answer
     
-    except Exception:
-        logger.exception("LLM generation failed")
-        raise
+    except Exception as e:
+        if "401" in str(e):
+            logger.error("OpenAI authentication failed")
+            raise OpenAIAuthError("Invalid OpenAI API key") from e
+
+        logger.error("LLM generation failed: %s", e)
+        raise GenerationError("LLM generation failed") from e
