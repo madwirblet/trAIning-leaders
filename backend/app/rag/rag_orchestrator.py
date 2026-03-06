@@ -3,6 +3,9 @@ from app.rag.augmenter import augment_prompt_with_context
 from app.rag.generator import generate_answer
 
 from typing import Dict
+import logging
+
+logger = logging.getLogger(__name__)
 
 def rag_service(query: str) -> Dict[str, object]:
     """
@@ -22,15 +25,23 @@ def rag_service(query: str) -> Dict[str, object]:
     }
     """
 
-    chunks, sources = retrieve(query)
+    try:
+        logger.info("Starting RAG Pipeline")
 
-    prompt = augment_prompt_with_context(query, chunks)
+        chunks, sources = retrieve(query)
 
-    answer = generate_answer(prompt)
+        prompt = augment_prompt_with_context(query, chunks)
 
+        answer = generate_answer(prompt)
 
-    return {
-        "answer": answer,
-        "context": chunks,
-        "sources": sources
-    }
+        logger.info("RAG Pipeline completed")
+
+        return {
+            "answer": answer,
+            "context": chunks,
+            "sources": sources
+        }
+    
+    except Exception as e:
+        logger.exception("RAG pipeline failed for query '%s': %s", query, e)
+        raise

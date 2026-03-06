@@ -2,10 +2,14 @@
 #### Accept query vector, find top k similar chunks, return them
 
 from app.core.config import settings
+from app.core.exceptions import RetrievalError, OpenAIAuthError
 from app.rag.embedder import embed_text
 from app.rag.vector_store import get_collection
 
 from typing import List, Dict
+import logging
+
+logger = logging.getLogger(__name__)
 
 def retrieve(query: str, k: int = settings.TOP_K) -> List[Dict[str,str]]:
     """
@@ -21,16 +25,28 @@ def retrieve(query: str, k: int = settings.TOP_K) -> List[Dict[str,str]]:
     }
     """
 
-    collection = get_collection()
-    qVec = embed_text(query)
+    try:
+        logger.info("Retrieving relevant documents")
 
-    results = collection.query(
-        query_embeddings = qVec,
-        n_results = k,
-        include = ["documents", "metadatas"]
-    )
+        collection = get_collection()
+        qVec = embed_text(query)
 
-    docs = results["documents"][0]
-    sources = [m["source"] for m in results["metadatas"][0]]
+        results = collection.query(
+            query_embeddings = qVec,
+            n_results = k,
+            include = ["documents", "metadatas"]
+        )
 
-    return docs, sources
+        docs = results["documents"][0]
+        sources = [m["source"] for m in results["metadatas"][0]]
+
+        logger.info(f"Retrieved {len(docs)} documents")
+
+        return docs, sources
+    
+    except OpenAIAuthError:
+        raise
+
+    except Exception as e:
+        logger.exception("Retrieval failed: %s", e)
+        raise RetrievalError("Failed to retrieve content") from e

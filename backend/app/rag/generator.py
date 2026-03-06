@@ -2,20 +2,35 @@
 #### Accept query, embed, similarity search, augment query, generate response
 
 from app.core.config import settings
-from openai import OpenAI
+from app.core.exceptions import OpenAIAuthError, GenerationError
+from openai import OpenAI, AuthenticationError
+import logging
 
 client = OpenAI(api_key = settings.OPENAI_API_KEY)
+logger = logging.getLogger(__name__)
 
 def generate_answer(prompt: str) -> str:
     """
     Generate LLM response to an engineered prompt. Returns answer.
     """
+    try:
+        logger.info("Generating response from LLM")
 
-    res = client.chat.completions.create(
-        model = settings.LLM_MODEL,
-        messages = [{"role" : "user", "content" : prompt}]
-    )
+        res = client.chat.completions.create(
+            model = settings.LLM_MODEL,
+            messages = [{"role" : "user", "content" : prompt}]
+        )
 
-    answer = res.choices[0].message.content
+        answer = res.choices[0].message.content
 
-    return answer
+        logger.info("Generated response successfully")
+
+        return answer
+    
+    except AuthenticationError as e:
+        logger.error("OpenAI authentication failed")
+        raise OpenAIAuthError("Invalid OpenAI API key") from e
+    
+    except Exception as e:
+        logger.error("LLM generation failed: %s", e)
+        raise GenerationError("LLM generation failed") from e
