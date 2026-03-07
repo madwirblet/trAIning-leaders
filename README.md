@@ -56,7 +56,12 @@ pip install [package]
 pip freeze > requirements.txt
 ```
 
-#### 2. To locally run backend FastAPI Server
+#### 2. Set up local .env
+Create `/backend/.env`  
+Copy the structure from `/backend/.env.example`   
+Fill in each variable (NO SPACES)  
+
+#### 3. To locally run backend FastAPI Server
 Start the FastAPI server (--reload to update when changes are made)
 ```bash
 uvicorn app.main:app --reload
@@ -81,4 +86,5 @@ Go [HERE](http://127.0.0.1:8000/docs)
 ## Major Change Log
 
 - February 11th, 2026 --> project structure/ skeleton pushed to Main
+
 
