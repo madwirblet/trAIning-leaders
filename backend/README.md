@@ -71,9 +71,10 @@ pip freeze > requirements.txt
 
 ### Environemnt Variables
 
-Create '.env' file in 'backend/' to store API keys
+Create `.env`  
+Copy structure from `.env.example` 
 
-Do not commit this file
+Do not commit this file (listed in .gitignore)
 
 ### Run the FastAPI Server
 
