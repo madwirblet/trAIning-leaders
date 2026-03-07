@@ -2,9 +2,7 @@
 backend/venv/
 backend/data/
 backend/.env
-backend/.env.*
 *.env
-*.env.*
 
 # Pycache folders + compiled python
 __pycache__/
