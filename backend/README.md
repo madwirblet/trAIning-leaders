@@ -86,6 +86,18 @@ uvicorn app.main:app --reload
 To test API endpoints
 Go [HERE](http://127.0.0.1:8000/docs)
 
+
+## Test Scripts 
+
+Located in `backend/scripts`  
+
+To run:
+```bash
+cd ./backend/ ## Must be run from backend directory
+python -m scripts.[script_name]
+```
+
+
 ## Document Ingestion
 
 ### Course Content
