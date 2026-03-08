@@ -102,7 +102,7 @@ python -m scripts.[script_name] ## DO NOT include .py
 
 ### Course Content
 
-Place '.txt' and '.pdf' files inside 'backend/docs/'
+Course documents are stored in `backend/docs/LeaderAid_docs`
 
 ### Run Ingestion Script
 
