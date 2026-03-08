@@ -18,14 +18,17 @@
     pointer-events: auto !important;
 }
 
+.chat-toggle-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover; /* prevents the mascot from stretching*/
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
 #chat-toggle-btn:hover {
     transform: scale(1.1) !important;
     box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5) !important;
-}
-
-#chat-toggle-btn svg {
-    color: white !important;
-    pointer-events: none !important;
 }
 
 #chat-toggle-btn.hidden {
