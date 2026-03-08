@@ -94,7 +94,7 @@ Located in `backend/scripts`
 To run:
 ```bash
 cd ./backend/ ## Must be run from backend directory
-python -m scripts.[script_name]
+python -m scripts.[script_name] ## DO NOT include .py
 ```
 
 
