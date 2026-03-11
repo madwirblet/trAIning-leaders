@@ -10,6 +10,18 @@ from app.core.exceptions import DocumentProcessingError
 
 logger = logging.getLogger(__name__)
 
+# ----------------
+# Clean Text Field
+# ----------------
+
+def clean_text(text: str) -> str:
+    text = text.replace("-\n", "")
+    text = text.replace("\n", " ")
+    text = text.replace("\r", " ")
+    text = text.replace("\t", " ")
+    text = " ". join(text.split())
+    return text
+
 # ---------------
 # Load .txt files
 # ---------------
@@ -23,7 +35,7 @@ def load_txt_file(path: str) -> str:
 
         logger.info(f"Loaded TXT file successfully: {path}")
         
-        return text
+        return clean_text(text)
     
     except Exception as e:
         logger.error("Failed to load TXT file %s: %s", path, e)
@@ -48,7 +60,7 @@ def load_pdf_file(path: str) -> str:
         
         logger.info(f"Loaded PDF successfully: {path}")
 
-        return full_text
+        return clean_text(full_text)
     
     except Exception as e:
         logger.error("Failed to load PDF file %s: %s", path, e)
@@ -103,6 +115,7 @@ def process_file(path: str, module: str) -> List[Dict[str, Any]]:
     Returned chunks have the form:
     {
         "text": chunk's raw text,
+        "id": unique id based on module, source, index,
         "metadata": {
             "module": module name
             "source": file name
@@ -128,6 +141,7 @@ def process_file(path: str, module: str) -> List[Dict[str, Any]]:
         for i, chunk in enumerate(chunks):
             res.append({
                 "text": chunk,
+                "id": f"{module}_{filename.replace(" ", "")}_{i}",
                 "metadata": {
                     "module": module,
                     "source": filename,
@@ -184,6 +198,7 @@ def build_chunks(root_dir: str = settings.DOCS_DIR) -> List[Dict[str, Any]]:
     Returned chunks have the form:
     {
         "text": chunk's raw text,
+        "id": unique id based on module, source, index,
         "metadata": {
             "module": module name
             "source": file name
