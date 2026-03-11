@@ -198,7 +198,7 @@ def build_chunks(root_dir: str = settings.DOCS_DIR) -> List[Dict[str, Any]]:
     Returned chunks have the form:
     {
         "text": chunk's raw text,
-        "id": unique id based on module, source, index,
+        "id": unique id <module>_<source>_<index>
         "metadata": {
             "module": module name
             "source": file name

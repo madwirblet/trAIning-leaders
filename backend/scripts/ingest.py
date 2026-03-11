@@ -13,14 +13,18 @@ def main():
 
     collection = get_collection()
 
-    for i, chunk in enumerate(chunks):
-        embedding = embed_text(chunk["chunk"])
+    for chunk in chunks:
+        id = chunk["id"]
+        text = chunk["text"]
+        embedding = embed_text(chunk["text"])
+        
+        metadata = chunk["metadata"]
 
         collection.add(
-            ids = [str(i)],
-            documents = [chunk["chunk"]],
+            ids = [id],
+            documents = [text],
             embeddings = [embedding],
-            metadatas = [{"source" : chunk["source"]}],
+            metadatas = [metadata],
         )
 
     print("Ingestion complete.")
