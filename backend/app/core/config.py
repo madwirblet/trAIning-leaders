@@ -21,6 +21,11 @@ class Settings(BaseSettings):
     # Retrieval Settings
     TOP_K: int = 3
 
+    # Query Relevance
+    RELEVANCE_THRESHOLD: float = 0.35 
+
+    COURSE_CONTEXT: str = "Leadership course, team management, conflict resolution, emotional intelligence, and personal development principles."
+
     # OpenAI
     OPENAI_API_KEY: str | None = None
     EMBEDDING_MODEL: str = "text-embedding-3-small"
