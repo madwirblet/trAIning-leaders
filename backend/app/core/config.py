@@ -5,7 +5,7 @@ class Settings(BaseSettings):
     Central backend config - loaded from .env or defaults
     """
     # Python Version
-    PYTHON_VERSION: str | None
+    PYTHON_VERSION: str | None = None
     
     # Vector DB (chroma) persistence
     CHROMA_DIR: str = "data/chroma_db"
