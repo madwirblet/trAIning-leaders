@@ -141,7 +141,7 @@ def process_file(path: str, module: str) -> List[Dict[str, Any]]:
         for i, chunk in enumerate(chunks):
             res.append({
                 "text": chunk,
-                "id": f"{module}_{filename.replace(" ", "")}_{i}",
+                "id": f"{module}_{filename.replace(' ', '')}_{i}", # fixed the syntax error received when running ingestion script
                 "metadata": {
                     "module": module,
                     "source": filename,
