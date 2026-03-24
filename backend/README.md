@@ -63,6 +63,10 @@ Install dependencies
 pip install -r requirements.txt
 ```
 
+
+(Installs chromadb, pydantic, fastapi, uvicorn, openai, pypdf, python-dotenv)
+
+
 When installing new dependencies
 ```bash
 pip install [package]
