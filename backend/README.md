@@ -13,10 +13,13 @@ It provides a FastAPI server supporting:
 - **FastAPI** -- API framework
 - **Uvicorn** -- ASGI server
 - **ChromaDB** -- local persistent vector database
-- **LlamaIndex** -- RAG orchestration
 - **OpenAI API**
     - Embeddings: 'text-embedding-3-small'
     - LLM: 'gpt-4o-mini;
+- **Pydantic**
+- **Pypdf**
+- **Python-dotenv**
+
 
 ## Directory Structure
 
@@ -62,9 +65,6 @@ Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
-
-
-(Installs chromadb, pydantic, fastapi, uvicorn, openai, pypdf, python-dotenv)
 
 
 When installing new dependencies
