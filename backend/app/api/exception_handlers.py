@@ -61,7 +61,6 @@ async def document_exception_handler(request: Request, exc: DocumentProcessingEr
 
 
 async def general_exception_handler(request: Request, exc: Exception):
-
     logger.error("Unhandled exception: %s", exc)
 
     return JSONResponse(

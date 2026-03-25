@@ -1,3 +1,5 @@
+## Generate embeddings for text(s)
+
 from openai import OpenAI, AuthenticationError
 from typing import List, Union
 import logging
