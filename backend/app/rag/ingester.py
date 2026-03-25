@@ -15,6 +15,7 @@ logger = logging.getLogger(__name__)
 # ----------------
 
 def clean_text(text: str) -> str:
+    ## Strips whitespaces & formatting characters to cut down number of tokens
     text = text.replace("-\n", "")
     text = text.replace("\n", " ")
     text = text.replace("\r", " ")

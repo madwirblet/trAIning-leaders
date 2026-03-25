@@ -1,3 +1,5 @@
+## Augment user's prompt to include system prompt and relevant context
+
 from typing import List
 import logging
 from app.core.exceptions import RAGException
@@ -8,6 +10,13 @@ logger = logging.getLogger(__name__)
 def augment_prompt_with_context(query: str, context: List[str]) -> str:
     """
     Augments user's query, returning a prompt that specifies the LLM's role and provides contextually rich text. 
+
+    Accepts:
+        - query: User's prompt
+        - context: list of relevant course materials
+
+    Returns:
+        - sPrompt: Full augmented prompt that will be sent to the LLM
     """
 
     try:
@@ -18,7 +27,7 @@ def augment_prompt_with_context(query: str, context: List[str]) -> str:
         for i, c in enumerate(context):
             context_block += f"Example {i}: {c}\n\n"
 
-        sRole = "---ROLE---\nYou are a teaching assistant for a leadership course, helping answer student questions about the course.\nUse ONLY the context below to answer the question\n\n"
+        sRole = "---ROLE---\nYou are a teaching assistant for a leadership course, helping answer student questions about the course.\nYou should be concise, but not overlook key details.\nUse ONLY the context below to answer the question\n\n"
         sContext = f"---CONTEXT---\n{context_block}"
         sQuestion = f"---QUESTION---\n{query}"
 

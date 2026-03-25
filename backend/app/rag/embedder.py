@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 def embed_text(texts: Union[str, List[str]]) -> List[float]:
     try:
-
+        # Ensure texts is a list
         texts = [texts] if isinstance(texts, str) else texts
 
         logger.info("Embedding %d texts", len(texts))
