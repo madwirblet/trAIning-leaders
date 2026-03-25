@@ -84,23 +84,19 @@
             const loadingId = showLoading(chatMessages);
 
             try {
-                // Call your backend API
-                const response = await fetch('https://your-api-url.com/query', {
+                // Call backend API
+                const response = await fetch('https://your-render-url.onrender.com/chat/', {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ 
-                        query: question 
+                        message: question  // matches backend's expected key
                     })
                 });
 
                 // Remove loading indicator
                 removeLoading(loadingId, chatMessages);
-
-                // Add delay to simulate thinking
-                const typingDelay = Math.min(2000, aiResponse.length * 20); 
-                setTimeout(() => { appendMessage('AI', aiResponse, chatMessages); }, typingDelay);
 
                 if (!response.ok) {
                     throw new Error(`API error: ${response.status}`);
@@ -109,8 +105,11 @@
                 const data = await response.json();
                 
                 // Handle different response formats
-                const aiResponse = data.response || data.answer || data.message || 'No response received';
-                appendMessage('AI', aiResponse, chatMessages);
+                const aiResponse = data.message || data.response || data.answer || 'No response received';
+
+                // Add delay to simulate thinking, then show response
+                const typingDelay = Math.min(2000, aiResponse.length * 20);
+                setTimeout(() => { appendMessage('AI', aiResponse, chatMessages); }, typingDelay);
 
             } catch (error) {
                 // Remove loading indicator
