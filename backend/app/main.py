@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.exceptions import HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import logging
 from app.api import chat, health
@@ -27,6 +28,14 @@ app = FastAPI(
     title = "Thinkific RAG Chatbot Backend",
     description = "RAG service",
     lifespan = lifespan
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://leadershipuniversity.thinkific.com"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Include routers

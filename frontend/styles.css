@@ -256,7 +256,7 @@
     pointer-events: none !important;
 }
 
-/* Typing annimation */
+/* Typing animation */
 .typing-indicator {
   display: flex;
   align-items: center;
@@ -291,7 +291,6 @@
   20% { opacity: 1; transform: translateY(-3px); }
   100% { opacity: 0.3; transform: translateY(0); }
 }
-
 
 @keyframes dots {
     0%, 20% { content: '.'; }
