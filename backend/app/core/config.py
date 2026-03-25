@@ -1,4 +1,13 @@
+import os
 from pydantic_settings import BaseSettings
+
+def resolve_env_file():
+    if os.path.exists(".env"):
+        return ".env"
+    if os.path.exists("./etc/secrets/.env"):
+        return "./etc/secrets/.env"
+    return None
+
 
 class Settings(BaseSettings):
     """
@@ -28,7 +37,7 @@ class Settings(BaseSettings):
 
     # Allows .env file to load globals
     class Config:
-        env_file = ".env"
+        env_file = resolve_env_file()
 
 # Shared settings instance (import where needed)
 settings = Settings()
