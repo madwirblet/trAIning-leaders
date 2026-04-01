@@ -85,7 +85,7 @@
 
             try {
                 // Call backend API
-                const response = await fetch('https://your-render-url.onrender.com/chat/', {
+                const response = await fetch('https://training-leaders.onrender.com/chat/', {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json'
@@ -126,7 +126,7 @@
             }
         }
 
-        const AVATAR_URL = "https://your-image-url-here.png";
+        const AVATAR_URL = "https://raw.githubusercontent.com/madwirblet/trAIning-leaders/refs/heads/main/frontend/Mascot.png";
 
         function appendMessage(sender, text, container) {
             const msgDiv = document.createElement('div');
