@@ -315,10 +315,32 @@
         right: 15px;
     }
 }
+
+
+/* AI message avatar */
+.chat-message-ai-wrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.chat-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.chat-message-ai-wrapper .chat-message-ai {
+    margin-bottom: 0;
+}
 </style>
 <!-- Chat Toggle Button -->
 <button id="chat-toggle-btn" aria-label="Toggle chat widget">
-    <img src="assets/mascot.png" class="chat-toggle-icon" alt="Open chatbot">
+    <img src="https://raw.githubusercontent.com/madwirblet/trAIning-leaders/refs/heads/main/frontend/Mascot.png" class="chat-toggle-icon" alt="Open chatbot">
 </button>
 
 <!-- Chat Widget -->
@@ -426,7 +448,7 @@
 
             try {
                 // Call backend API
-                const response = await fetch('https://your-render-url.onrender.com/chat/', {
+                const response = await fetch('https://training-leaders.onrender.com/chat/', {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json'
@@ -467,38 +489,61 @@
             }
         }
 
+        const AVATAR_URL = "https://raw.githubusercontent.com/madwirblet/trAIning-leaders/refs/heads/main/frontend/Mascot.png";
+
         function appendMessage(sender, text, container) {
             const msgDiv = document.createElement('div');
             msgDiv.className = `chat-message chat-message-${sender.toLowerCase()}`;
-            
+
             const content = document.createElement('div');
-            
+
             // Add sender label for system messages
             if (sender === 'System') {
                 const label = document.createElement('strong');
                 label.textContent = 'System';
                 content.appendChild(label);
             }
-            
+
             const textNode = document.createTextNode(text);
             content.appendChild(textNode);
-            
             msgDiv.appendChild(content);
-            container.appendChild(msgDiv);
-            
+
+            // Wrap AI messages with avatar
+            if (sender === 'AI') {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'chat-message-ai-wrapper';
+                const avatar = document.createElement('img');
+                avatar.src = AVATAR_URL;
+                avatar.className = 'chat-avatar';
+                avatar.alt = 'Assistant';
+                wrapper.appendChild(avatar);
+                wrapper.appendChild(msgDiv);
+                container.appendChild(wrapper);
+            } else {
+                container.appendChild(msgDiv);
+            }
+
             // Auto-scroll to bottom
             container.scrollTop = container.scrollHeight;
         }
 
         function showLoading(container) {
-            const loadingDiv = document.createElement('div');
             const loadingId = 'loading-' + Date.now();
-            loadingDiv.id = loadingId;
+            const wrapper = document.createElement('div');
+            wrapper.className = 'chat-message-ai-wrapper';
+            wrapper.id = loadingId;
+            const avatar = document.createElement('img');
+            avatar.src = AVATAR_URL;
+            avatar.className = 'chat-avatar';
+            avatar.alt = 'Assistant';
+            const loadingDiv = document.createElement('div');
             loadingDiv.className = 'chat-message chat-message-ai';
             loadingDiv.innerHTML = `<div class="typing-indicator">
                 <span></span><span></span><span></span>
             </div>`;
-            container.appendChild(loadingDiv);
+            wrapper.appendChild(avatar);
+            wrapper.appendChild(loadingDiv);
+            container.appendChild(wrapper);
             container.scrollTop = container.scrollHeight;
             return loadingId;
         }
@@ -512,7 +557,7 @@
 
         // Add welcome message
         setTimeout(function() {
-            appendMessage('AI', 'Hello! I\'m your Leadership Course Assistant. Ask me anything about the lecture material!', chatMessages);
+            appendMessage('AI', 'Hello! I\'m your Leadership Course Assistant. Ask me anything about the lecture material! (I\'m still a work in progress!)', chatMessages);
         }, 500);
     }
 })()
