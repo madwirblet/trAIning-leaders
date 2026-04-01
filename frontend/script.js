@@ -126,38 +126,61 @@
             }
         }
 
+        const AVATAR_URL = "https://your-image-url-here.png";
+
         function appendMessage(sender, text, container) {
             const msgDiv = document.createElement('div');
             msgDiv.className = `chat-message chat-message-${sender.toLowerCase()}`;
-            
+
             const content = document.createElement('div');
-            
+
             // Add sender label for system messages
             if (sender === 'System') {
                 const label = document.createElement('strong');
                 label.textContent = 'System';
                 content.appendChild(label);
             }
-            
+
             const textNode = document.createTextNode(text);
             content.appendChild(textNode);
-            
             msgDiv.appendChild(content);
-            container.appendChild(msgDiv);
-            
+
+            // Wrap AI messages with avatar
+            if (sender === 'AI') {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'chat-message-ai-wrapper';
+                const avatar = document.createElement('img');
+                avatar.src = AVATAR_URL;
+                avatar.className = 'chat-avatar';
+                avatar.alt = 'Assistant';
+                wrapper.appendChild(avatar);
+                wrapper.appendChild(msgDiv);
+                container.appendChild(wrapper);
+            } else {
+                container.appendChild(msgDiv);
+            }
+
             // Auto-scroll to bottom
             container.scrollTop = container.scrollHeight;
         }
 
         function showLoading(container) {
-            const loadingDiv = document.createElement('div');
             const loadingId = 'loading-' + Date.now();
-            loadingDiv.id = loadingId;
+            const wrapper = document.createElement('div');
+            wrapper.className = 'chat-message-ai-wrapper';
+            wrapper.id = loadingId;
+            const avatar = document.createElement('img');
+            avatar.src = AVATAR_URL;
+            avatar.className = 'chat-avatar';
+            avatar.alt = 'Assistant';
+            const loadingDiv = document.createElement('div');
             loadingDiv.className = 'chat-message chat-message-ai';
             loadingDiv.innerHTML = `<div class="typing-indicator">
                 <span></span><span></span><span></span>
             </div>`;
-            container.appendChild(loadingDiv);
+            wrapper.appendChild(avatar);
+            wrapper.appendChild(loadingDiv);
+            container.appendChild(wrapper);
             container.scrollTop = container.scrollHeight;
             return loadingId;
         }
@@ -171,7 +194,7 @@
 
         // Add welcome message
         setTimeout(function() {
-            appendMessage('AI', 'Hello! I\'m your Leadership Course Assistant. Ask me anything about the lecture material!', chatMessages);
+            appendMessage('AI', 'Hello! I\'m your Leadership Course Assistant. Ask me anything about the lecture material! (I\'m still a work in progress!)', chatMessages);
         }, 500);
     }
 })()
