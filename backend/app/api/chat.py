@@ -16,12 +16,6 @@ router = APIRouter()
 async def chat_endpoint(request: ChatRequest):
     logger.info("Chat request received")
 
-    if not is_query_relevant(request.message):
-        # Return a polite, hardcoded rejection if it's off-topic
-        return {
-            "reply": "I am specifically designed to help with this leadership course material. Could you rephrase your question to relate to the course?"
-        }
-
     result = rag_service(request.message)
 
     logger.info("Chat request complete")
