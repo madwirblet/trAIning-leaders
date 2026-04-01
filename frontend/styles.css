@@ -314,3 +314,25 @@
         right: 15px;
     }
 }
+
+
+/* AI message avatar */
+.chat-message-ai-wrapper {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.chat-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.chat-message-ai-wrapper .chat-message-ai {
+    margin-bottom: 0;
+}
