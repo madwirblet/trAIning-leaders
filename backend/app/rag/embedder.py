@@ -1,5 +1,7 @@
+## Generate embeddings for text(s)
+
 from openai import OpenAI, AuthenticationError
-from typing import List
+from typing import List, Union
 import logging
 from app.core.config import settings
 from app.core.exceptions import OpenAIAuthError, EmbeddingError
@@ -7,18 +9,24 @@ from app.core.exceptions import OpenAIAuthError, EmbeddingError
 client = OpenAI(api_key = settings.OPENAI_API_KEY)
 logger = logging.getLogger(__name__)
 
-def embed_text(text: str) -> List[float]:
+
+def embed_text(texts: Union[str, List[str]]) -> List[float]:
     try:
-        logger.info("Embedding text")
+        # Ensure texts is a list
+        texts = [texts] if isinstance(texts, str) else texts
+
+        logger.info("Embedding %d texts", len(texts))
 
         res = client.embeddings.create(
             model = settings.EMBEDDING_MODEL,
-            input = text
+            input = texts
         )
+
+        embeddings = [item.embedding for item in res.data]
 
         logger.info("Embedded text successfully")
 
-        return res.data[0].embedding
+        return embeddings
     
     except AuthenticationError as e:
         logger.error("OpenAI authentication failed")

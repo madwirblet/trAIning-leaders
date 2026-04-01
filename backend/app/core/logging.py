@@ -1,3 +1,5 @@
+## Configure logger instance for use throughout server
+
 import logging
 import sys
 

@@ -15,12 +15,12 @@ def retrieve(query: str, k: int = settings.TOP_K) -> List[Dict[str,str]]:
     """
     Retrieve the k most relevant documents from the vector database given user query.
     - Convert query into an embedding
-    - Perform similarity search against Chrome vector store
+    - Perform similarity search against ChromaDB vector store
     - Return k most relevant text chunks
 
     Each retrieved result of the form:
     {
-        "chunk": "<retrieved text content>",
+        "chunk": "<retrieved text content>":
         "source": "<filename>#chunk<i>"
     }
     """

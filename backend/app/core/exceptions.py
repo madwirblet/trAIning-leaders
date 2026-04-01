@@ -1,3 +1,5 @@
+## Define custom Exception classes for clarity on server failure
+
 class RAGException(Exception):
     pass
 

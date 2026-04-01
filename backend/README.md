@@ -13,10 +13,13 @@ It provides a FastAPI server supporting:
 - **FastAPI** -- API framework
 - **Uvicorn** -- ASGI server
 - **ChromaDB** -- local persistent vector database
-- **LlamaIndex** -- RAG orchestration
 - **OpenAI API**
     - Embeddings: 'text-embedding-3-small'
     - LLM: 'gpt-4o-mini;
+- **Pydantic**
+- **Pypdf**
+- **Python-dotenv**
+
 
 ## Directory Structure
 
@@ -63,6 +66,7 @@ Install dependencies
 pip install -r requirements.txt
 ```
 
+
 When installing new dependencies
 ```bash
 pip install [package]
@@ -86,11 +90,23 @@ uvicorn app.main:app --reload
 To test API endpoints
 Go [HERE](http://127.0.0.1:8000/docs)
 
+
+## Test Scripts 
+
+Located in `backend/scripts`  
+
+To run:
+```bash
+cd ./backend/ ## Must be run from backend directory
+python -m scripts.[script_name] ## DO NOT include .py
+```
+
+
 ## Document Ingestion
 
 ### Course Content
 
-Place '.txt' and '.pdf' files inside 'backend/docs/'
+Course documents are stored in `backend/docs/LeaderAid_docs`
 
 ### Run Ingestion Script
 

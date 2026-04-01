@@ -1,8 +1,13 @@
 # Backend venv + local chromadb
 backend/venv/
-backend/data/
+
+
+# Environment variables
+# Root .env
 backend/.env
 *.env
+# Render-Style Mounted .env
+backend/etc/
 
 # Pycache folders + compiled python
 __pycache__/

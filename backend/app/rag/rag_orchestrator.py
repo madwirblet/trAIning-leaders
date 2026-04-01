@@ -1,3 +1,6 @@
+## Orchestrates RAG Pipeline
+#### Accept user input, retrieve relevant docs, augment prompt, generate answer
+
 from app.rag.retriever import retrieve
 from app.rag.augmenter import augment_prompt_with_context
 from app.rag.generator import generate_answer

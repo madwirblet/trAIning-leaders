@@ -1,4 +1,22 @@
+## Configure environment variables that are usable throughout the server
+
+import os
 from pydantic_settings import BaseSettings
+
+def resolve_env_file():
+    """
+    .env Path Resolver
+    Locally, .env is stored in the root of 'backend/'
+    On Render Deployment, .env is mounted in 'backend/secrets/'
+    If neither is present, return None => server crashes
+    """
+    
+    if os.path.exists(".env"):
+        return ".env"
+    if os.path.exists("./etc/secrets/.env"):
+        return "./etc/secrets/.env"
+    return None
+
 
 class Settings(BaseSettings):
     """
@@ -33,7 +51,7 @@ class Settings(BaseSettings):
 
     # Allows .env file to load globals
     class Config:
-        env_file = ".env"
+        env_file = resolve_env_file()
 
 # Shared settings instance (import where needed)
 settings = Settings()
