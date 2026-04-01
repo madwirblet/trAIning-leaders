@@ -38,6 +38,7 @@ class Settings(BaseSettings):
 
     # Retrieval Settings
     TOP_K: int = 3
+    EMBEDDING_THRESHOLD: float = 0.7
 
     # OpenAI
     OPENAI_API_KEY: str | None = None

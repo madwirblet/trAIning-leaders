@@ -33,6 +33,13 @@ def rag_service(query: str) -> Dict[str, object]:
 
         chunks, sources = retrieve(query)
 
+        if not chunks:
+            return {
+                "answer": "I don't have the information to answer that question.",
+                "context": [],
+                "sources": []
+            }
+
         prompt = augment_prompt_with_context(query, chunks)
 
         answer = generate_answer(prompt)
