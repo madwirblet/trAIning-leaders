@@ -1,5 +1,3 @@
-
-/* 1. Speech Bubble Styling */
 #chat-hint-bubble {
     position: fixed !important;
     bottom: 60px !important;
@@ -25,87 +23,47 @@
     transform: translateX(0);
 }
 
-/* 2. Expanding Pill Setup */
 #chat-toggle-btn {
     position: fixed !important;
     bottom: 20px !important;
     right: 20px !important;
-    width: 80px !important;   /* Fixed width */
-    height: 80px !important;  /* Fixed height */
+    width: 80px !important;
+    height: 80px !important; 
     background: linear-gradient(135deg, #FF8200 0%, #0021A5 100%) !important;
-    box-shadow: 0 4px 12px rgba(255, 130, 0, 0.4) !important; /* Matches the glow to orange */
+    box-shadow: 0 4px 12px rgba(255, 130, 0, 0.4) !important;
     border: none !important;
     border-radius: 50% !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     padding: 0 !important;
-    z-index: 999999 !important;
-    transition: transform 0.3s ease !important;
-}
-
-.pill-text {
-    color: white !important;
-    font-weight: 600 !important;
-    font-size: 15px !important;
-    margin-left: 5px;
-    margin-right: 10px;
-    opacity: 1;
-    max-width: 200px;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    display: inline-block !important;
-}
-
-
-#chat-toggle-btn.collapsed .pill-text {
-    max-width: 0;
-    margin: 0;
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* Mobile check: if screen is too small, don't show the pill text to save space */
-@media (max-width: 400px) {
-    .pill-text { display: none !important; }
-    #chat-hint-bubble { display: none !important; }
-}
-
-
-#chat-toggle-btn {
-    position: fixed !important;
-    bottom: 20px !important;
-    right: 20px !important;
-    width: 90px !important;
-    height: 90px !important;
-    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
-    border: none !important;
-    border-radius: 50% !important;
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4) !important;
     cursor: pointer !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    transition: all 0.3s ease !important;
     z-index: 999999 !important;
+    transition: all 0.3s ease !important;
     pointer-events: auto !important;
-}
-
-.chat-toggle-icon {
-    width: 68px;
-    height: 68px;
-    border-radius: 50%;
-    object-fit: cover; /* prevents the mascot from stretching*/
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    flex-shrink: 0 !important;
 }
 
 #chat-toggle-btn:hover {
     transform: scale(1.1) !important;
-    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5) !important;
+    box-shadow: 0 6px 20px rgba(0, 33, 165, 0.5) !important;
 }
 
 #chat-toggle-btn.hidden {
     display: none !important;
+}
+
+.chat-toggle-icon {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    flex-shrink: 0 !important;
+}
+
+#chat-header, .chat-message-user {
+    background: linear-gradient(135deg, #FF8200 0%, #0021A5 100%) !important;
+    color: white !important;
 }
 
 /* Chat Widget */
@@ -147,9 +105,8 @@
     display: flex !important;
 }
 
-/* Chat Header */
 #chat-header {
-    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+    background: linear-gradient(135deg, #FF8200 0%, #0021A5 100%) !important;
     color: white !important;
     padding: 16px 20px !important;
     border-top-left-radius: 12px !important;
