@@ -1,0 +1,19 @@
+How do I get to Cloverleaf?
+To get to Cloverleaf go to your primary browser and type https://cloverleaf.me/
+Here you will be able to navigate all Cloverleaf has to offer. To get started, click the login button in the top right corner of the page to either login or create an account. 
+
+What is Cloverleaf?
+Cloverleaf is a personal and team development platform that uses assessments to generate automated coaching insights. Helps users to understand: their personality, work style, communication patterns, how they collaborate with others. It seamlessly integrates into platforms like Gmail, Outlook, Teams, and Slack to fit the needs of any organization. 
+Cloverleaf is an online platform that combines assessment, coaching, and culture data together. Cloverleaf seeks to improve team performance through customized coaching and leadership insights. 
+
+How does Cloverleaf work as a manager?
+As a manager, you are able to create a manager account, inviting employees to join your team. Here you are able to share assessments and receive insights on team members. This can help to improve overall team dynamics, 1-on-1 meetings, and general productivity. 
+
+Main features of the Cloverleaf platform
+Personal dashboard: overview of your assessments, daily coaching tips, strengths, blind spots, and communication insights
+Assessments: DISC, enneagram, VIA character strengths, motivators, etc. Each assessment has a summary, detailed breakdown, and personalized coaching
+Team dashboard: team personality map, comparison of team members, collaboration insights, conflict patterns, communication habits
+Coaching tips: daily, personalized, contextual, can be integrated into other platforms
+
+How does Cloverleaf fit into this course?
+After learning about leadership, it is important to put what you have learned into practice. Cloverleaf provides you with the tools to put skills learned in this course into action. Cloverleaf also provides a platform in which you are able to share what you have learned with your team.
