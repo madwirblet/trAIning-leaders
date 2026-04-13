@@ -11,7 +11,8 @@ def get_collection() -> chromadb.Collection:
         logger.info("Connecting to ChromaDB")
 
         return client.get_or_create_collection(
-            name = settings.COLLECTION_NAME
+            name = settings.COLLECTION_NAME,
+            metadata={"hnsw:space" : "cosine"}
         )
     
     except Exception as e:
