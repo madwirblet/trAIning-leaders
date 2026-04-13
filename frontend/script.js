@@ -194,7 +194,25 @@
 
         // Add welcome message
         setTimeout(function() {
-            appendMessage('AI', 'Hello! I\'m your Leadership Course Assistant. Ask me anything about the lecture material! (I\'m still a work in progress!)', chatMessages);
+            appendMessage('AI', 'Hey! I\’m Harper, your Leadership Course Assistant. I can help with course content and getting around the course. Ask me anything you need help with, I\’ve got you!', chatMessages);
         }, 500);
+        const hintBubble = document.getElementById('chat-hint-bubble');
+
+    // Show the bubble after 1.5s
+    setTimeout(() => {
+        if (hintBubble) hintBubble.classList.add('visible');
+    }, 1200);
+
+    // Collapse the pill and hide bubble after 4.5s
+    setTimeout(() => {
+        const btn = document.getElementById('chat-toggle-btn');
+        if (btn) btn.classList.add('collapsed');
+        if (hintBubble) hintBubble.classList.remove('visible');
+    }, 9000);
+
+    // Cleanup: If they open the chat manually, hide the bubble immediately
+    toggleBtn.addEventListener('click', () => {
+        if (hintBubble) hintBubble.style.display = 'none';
+    });
     }
 })()

@@ -1,39 +1,70 @@
 <style>
-/* Chat Toggle Button */
+#chat-hint-bubble {
+    position: fixed !important;
+    bottom: 60px !important;
+    right: 110px !important; 
+    background: white !important;
+    color: #333 !important;
+    padding: 10px 16px !important;
+    border-radius: 18px 18px 2px 18px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    z-index: 999999 !important;
+    pointer-events: none !important;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all 0.5s ease !important;
+    white-space: nowrap !important;
+    font-family: inherit !important;
+}
+
+#chat-hint-bubble.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 #chat-toggle-btn {
     position: fixed !important;
     bottom: 20px !important;
     right: 20px !important;
-    width: 60px !important;
-    height: 60px !important;
-    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+    width: 80px !important;
+    height: 80px !important; 
+    background: linear-gradient(135deg, #FF8200 0%, #0021A5 100%) !important;
+    box-shadow: 0 4px 12px rgba(255, 130, 0, 0.4) !important;
     border: none !important;
     border-radius: 50% !important;
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4) !important;
-    cursor: pointer !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    transition: all 0.3s ease !important;
+    padding: 0 !important;
+    cursor: pointer !important;
     z-index: 999999 !important;
+    transition: all 0.3s ease !important;
     pointer-events: auto !important;
-}
-
-.chat-toggle-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    object-fit: cover; /* prevents the mascot from stretching*/
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
 #chat-toggle-btn:hover {
     transform: scale(1.1) !important;
-    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.5) !important;
+    box-shadow: 0 6px 20px rgba(0, 33, 165, 0.5) !important;
 }
 
 #chat-toggle-btn.hidden {
     display: none !important;
+}
+
+.chat-toggle-icon {
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    flex-shrink: 0 !important;
+}
+
+#chat-header, .chat-message-user {
+    background: linear-gradient(135deg, #0021A5 0%, #0021A5 100%) !important;
+    color: white !important;
 }
 
 /* Chat Widget */
@@ -75,9 +106,8 @@
     display: flex !important;
 }
 
-/* Chat Header */
 #chat-header {
-    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+    background: linear-gradient(135deg, #FF8200 0%, #0021A5 100%) !important;
     color: white !important;
     padding: 16px 20px !important;
     border-top-left-radius: 12px !important;
@@ -161,7 +191,7 @@
 }
 
 .chat-message-user {
-    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    background: linear-gradient(135deg, #0021A5 0%, #0021A5 100%);
     color: white;
     margin-left: auto;
     border-bottom-right-radius: 4px;
@@ -227,7 +257,7 @@
     padding: 0 !important;
     width: 44px !important;
     height: 44px !important;
-    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+    background: linear-gradient(135deg, #0021A5 0%, #0021A5 100%) !important;
     color: white !important;
     border: none !important;
     border-radius: 50% !important;
@@ -338,12 +368,12 @@
     margin-bottom: 0;
 }
 </style>
-<!-- Chat Toggle Button -->
+<div id="chat-hint-bubble">Have a question? I can help!</div>
+
 <button id="chat-toggle-btn" aria-label="Toggle chat widget">
     <img src="https://raw.githubusercontent.com/madwirblet/trAIning-leaders/refs/heads/main/frontend/Mascot.png" class="chat-toggle-icon" alt="Open chatbot">
 </button>
 
-<!-- Chat Widget -->
 <div id="ai-chat-widget" style="display: none;">
     <div id="chat-header">
         <span>Leadership Course Assistant</span>
@@ -557,8 +587,26 @@
 
         // Add welcome message
         setTimeout(function() {
-            appendMessage('AI', 'Hey! I’m Harper, your Leadership Course Assistant. I can help with course content and getting around the course. Ask me anything you need help with, I’ve got you!', chatMessages);
+            appendMessage('AI', 'Hey! I\’m Harper, your Leadership Course Assistant. I can help with course content and getting around the course. Ask me anything you need help with, I\’ve got you!', chatMessages);
         }, 500);
+        const hintBubble = document.getElementById('chat-hint-bubble');
+
+    // Show the bubble after 1.5s
+    setTimeout(() => {
+        if (hintBubble) hintBubble.classList.add('visible');
+    }, 1200);
+
+    // Collapse the pill and hide bubble after 4.5s
+    setTimeout(() => {
+        const btn = document.getElementById('chat-toggle-btn');
+        if (btn) btn.classList.add('collapsed');
+        if (hintBubble) hintBubble.classList.remove('visible');
+    }, 9000);
+
+    // Cleanup: If they open the chat manually, hide the bubble immediately
+    toggleBtn.addEventListener('click', () => {
+        if (hintBubble) hintBubble.style.display = 'none';
+    });
     }
 })()
 </script>
