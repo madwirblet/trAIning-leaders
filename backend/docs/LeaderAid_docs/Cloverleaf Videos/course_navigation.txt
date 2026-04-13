@@ -1,0 +1,38 @@
+What is Thinkific and Leadership University?
+Thinkific is a course development platform used for hosting custom courses provided by industry experts. Leadership University is one of those custom Thinkific platforms designed to provide leadership content to aspiring industry leaders.
+
+How do I see my Course Curriculum?
+To see your course curriculum, either use view the panel on the left hand side of the course while it is open, or select "See Overview" from the course selection home page.
+
+How do I complete a module?
+To complete a course module, watch its videos to completion, read all of its documents, fill out all of its surveys, and select "COMPLETE & CONTINUE" on all pages.
+
+How do I manage my progress?
+To manage progress, view the percentage bar found both inside the course and on the Thinkific dashboard to see how much of the course you have completed.
+
+What can the chatbot be used for?
+The AI-Chatbot, Harper, can be used for answering questions regarding course navigation, Cloverleaf (an assessment platform for generating coaching insights), or any of the content located within the confines of this course.
+
+The video or content isn't loading. What should I do?
+If a lesson isn't loading, try refreshing your browser page. If the issue persists, ensure your internet connection is stable, clear your browser cache, or try opening the course in an Incognito/Private window.
+
+Why is my progress not being saved?
+Progress is tracked when you click the "COMPLETE & CONTINUE" button at the bottom of each lesson. If you close the window before clicking this, the system may not register that you finished the section.
+
+I finished the module, but it still says 0% complete. How do I fix this?
+Ensure that every individual item within the module (videos, text blocks, and surveys) has been marked as complete. Check the left-hand curriculum panel for any lessons without a checkmark next to them.
+
+What should I do if I can't download a PDF or resource?
+If a download link isn't responding, right-click the link and select "Save Link As..." or try using a different browser. Ensure you have a PDF viewer installed on your device to open the files.
+
+How do I fix display issues on a mobile device?
+While Leadership University is mobile-responsive, some complex lessons view best in landscape mode. If the "Complete & Continue" button is hidden, try scrolling to the very bottom or rotating your device.
+
+What do I do if I forgot my login credentials?
+On the Leadership University login page, click the "Forgot Password" link. Enter the email address associated with your account, and Thinkific will send you instructions to reset your password.
+
+Who do I contact if the chatbot cannot solve my problem?
+If you encounter a technical bug or an account issue that Harper cannot resolve, please contact the Leadership University support team via the "Support" link in the footer of the homepage or email the course administrator directly.
+
+
+
