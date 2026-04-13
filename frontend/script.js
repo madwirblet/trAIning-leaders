@@ -194,7 +194,7 @@
 
         // Add welcome message
         setTimeout(function() {
-            appendMessage('AI', 'Hello! I\'m your Leadership Course Assistant. Ask me anything about the lecture material! (I\'m still a work in progress!)', chatMessages);
+            appendMessage('AI', 'Hey! I\’m Harper, your Leadership Course Assistant. I can help with course content and getting around the course. Ask me anything you need help with, I\’ve got you!', chatMessages);
         }, 500);
         const hintBubble = document.getElementById('chat-hint-bubble');
 
