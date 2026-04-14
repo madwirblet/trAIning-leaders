@@ -116,9 +116,9 @@ First, ensure `backend/data/chromadb` is empty.
 
 Then, run the following command from `backend` directory:
 
-'''
+```bash
 python -m scripts.ingest
-'''
+```
 
 This builds the persistent vector store in 'data/chroma_db'
 
