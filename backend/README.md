@@ -112,8 +112,12 @@ Course documents are stored in `backend/docs/LeaderAid_docs`
 
 Populate ChromaDB with document chunks:
 
+First, ensure `backend/data/chromadb` is empty.
+
+Then, run the following command from `backend` directory:
+
 '''
-python scripts/ingest.py
+python -m scripts.ingest
 '''
 
 This builds the persistent vector store in 'data/chroma_db'
